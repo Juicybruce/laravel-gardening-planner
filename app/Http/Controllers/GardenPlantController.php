@@ -23,7 +23,6 @@ class GardenPlantController extends Controller
 
     public function destroy(GardenPlant $gardenPlant)
     {
-        // Optional: Add authorization check
         // $this->authorize('delete', $gardenPlant);
 
         $gardenPlant->delete();

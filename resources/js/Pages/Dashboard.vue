@@ -7,6 +7,7 @@ import { reactive, ref } from 'vue';
 
 defineProps({
     gardens: Array,
+    summary: Object,
     plants: Array,
 });
 
@@ -77,6 +78,10 @@ function deleteGarden(gardenId) {
                 <h2 class="text-xl font-semibold leading-tight text-white">
                     My Gardens
                 </h2>
+                <div class="text-xl font-semibold leading-tight text-white">
+                    You have {{ summary.total_gardens }} gardens and
+                    {{ summary.total_plants }} plants on the go.
+                </div>
                 <div class="relative ring-1 ring-green-300">
                     <button
                         class="bg-gray-800 px-3 py-2 font-bold uppercase text-green-300 ring-1 ring-green-300 transition hover:-translate-x-1 hover:-translate-y-1 focus:outline-none focus-visible:ring-2"
@@ -111,6 +116,14 @@ function deleteGarden(gardenId) {
                                 >
                                     {{ garden.name }}
                                 </h3>
+                                <p class="text-sm text-green-300">
+                                    {{ garden.plants.length }}
+                                    {{
+                                        garden.plants.length === 1
+                                            ? 'plant'
+                                            : 'plants'
+                                    }}
+                                </p>
                                 <div class="relative ring-1 ring-green-300">
                                     <button
                                         @click="deleteGarden(garden.id)"
@@ -119,9 +132,6 @@ function deleteGarden(gardenId) {
                                         Delete Garden
                                     </button>
                                 </div>
-                                <p class="text-sm text-green-300">
-                                    {{ garden.plants.length }} plants
-                                </p>
                                 <div
                                     class="relative ml-auto ring-1 ring-green-300"
                                 >
